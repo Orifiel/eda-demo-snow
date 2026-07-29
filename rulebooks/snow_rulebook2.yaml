@@ -1,0 +1,19 @@
+- name: Poll for new records in ServiceNow
+  hosts: all
+  sources:
+    - name: my_snow
+      servicenow.itsm.records:
+        table: sc_request
+        interval: 5
+      
+  rules:
+    - name: Enrich new REQ received form service catalog
+      condition: event.sys_class_name == "sc_request"
+      action:
+        run_job_template:
+          name: "Demo-Cleiton"
+          organization: "Default"
+          post_events: true
+          job_args:
+            extra_vars:
+              req_number: "{{ event.nunmber }}"
