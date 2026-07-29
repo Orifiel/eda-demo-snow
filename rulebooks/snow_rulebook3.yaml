@@ -1,22 +1,15 @@
 ---
-- name: ServiceNOW Events
+- name: ServiceNow to EDA Integration
   hosts: all
-  execution_strategy: parallel
   sources:
     - ansible.eda.webhook:
-        port: "{{ webhook_port | default(5000) }}"
-        token: "{{ webhook_token | default(omit) }}"
+        host: 0.0.0.0
+        port: 5000
   rules:
-    - name: ServiceNOW | Provision Virtual Machine
-      condition: |
-        event.payload.event == "SERVICE_CATALOG"
+    - name: Trigger Remediation on High Priority Incident
+      condition: event.payload.state == "New" and event.payload.priority == "1"
       action:
         run_job_template:
-          name: Demo-Cleiton-Template
-          organization: Default
-       
-
-    - name: ServiceNOW | Unhandled Events
-      condition: event.payload is defined
-      action:
-        debug:
+          name: "Demo-Cleiton-Template"
+          organization: "Default"
+          
