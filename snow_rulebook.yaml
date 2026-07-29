@@ -1,0 +1,28 @@
+- name: SNOW Webhook Ruleset
+  hosts: all
+  sources:
+    - name: my_snow
+      ansible.eda.webhook:
+        port: 5556
+        host: 0.0.0.0
+      filters:
+        - ansible.eda.json_filter:
+            include_keys:
+              - payload
+              - approval
+              - sys_class_name
+              - sys_created_by
+              - category
+              - urgency
+            exclude_keys:
+              - 'a'
+  rules:
+    - name: Snow webhook event
+      condition: event.payload.approval == "requested"
+      action:
+        run_job_template:
+          name: "ServiceNow Incident Remediation"
+          organization: "Default"
+          job_args:
+            extra_vars:
+              incident_id: "{{ event.payload.sys_id }}"
