@@ -12,5 +12,7 @@
         run_job_template:
           name: "Demo-Cleiton-Template"
           organization: "Default"
-      
+          job_args:
+            extra_vars:
+              incident_id: "{{ event.payload.incident_number }}"
           
