@@ -3,6 +3,9 @@
   sources:
     - name: my_snow
       servicenow.itsm.records:
+        host: "{{ snow_host }}"
+        username: "{{ snow_username }}"
+        password: "{{ snow_password }}"
         table: sc_request
         interval: 5
       
