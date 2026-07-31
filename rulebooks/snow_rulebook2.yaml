@@ -9,13 +9,12 @@
         timestamp_field: "sys_updated_on"
       
   rules:
-    - name: Enrich new INCIDENT received from service catalog
+    - name: Trigger Job Template
       condition: event.payload.incident_number is defined
       action:
         run_job_template:
           name: "Demo-Cleiton-Template"
           organization: "Default"
-          post_events: true
           job_args:
             extra_vars:
-              req_number: "{{ event.number }}"
+              incident_id: "{{ event.payload.incident_number }}"
