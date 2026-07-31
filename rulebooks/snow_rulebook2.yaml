@@ -5,7 +5,7 @@
       servicenow.itsm.records:
         table: incident
         interval: 10
-        sysparm_query: "state=2^priority=4"
+        sysparm_query: "state=1^priority=4"
         timestamp_field: "sys_updated_on"
       
   rules:
@@ -13,7 +13,7 @@
       condition: event.payload.incident_number is defined
       action:
         run_job_template:
-          name: "Close-Incident-Template"
+          name: "Demo-Cleiton-Template"
           organization: "Default"
           job_args:
             extra_vars:
