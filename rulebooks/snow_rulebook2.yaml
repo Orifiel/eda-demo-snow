@@ -10,7 +10,7 @@
       
   rules:
     - name: Enrich new INCIDENT received from service catalog
-      condition: event.sys_class_name == "incident" and event.state == "1" and event.priority == "1"s
+      condition: event.sys_class_name == "incident" and event.state == "1" and event.priority == "1"
       action:
         run_job_template:
           name: "Demo-Cleiton"
