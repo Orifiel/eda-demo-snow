@@ -4,7 +4,7 @@
     - name: my_snow
       servicenow.itsm.records:
         table: incident
-        interval: 5
+        interval: 30
         sysparm_query: "state=1^priority=1"
         timestamp_field: "sys_updated_on"
       
