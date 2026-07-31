@@ -5,12 +5,12 @@
       servicenow.itsm.records:
         table: incident
         interval: 30
-        sysparm_query: "state=1^priority=1"
+        sysparm_query: "state=1^priority=4"
         timestamp_field: "sys_updated_on"
       
   rules:
     - name: Enrich new INCIDENT received from service catalog
-      condition: event.sys_class_name == "incident" and event.state == "1" and event.priority == "1"
+      condition: event.sys_class_name == "incident" and event.state == "1" and event.priority == "4"
       action:
         run_job_template:
           name: "Demo-Cleiton"
