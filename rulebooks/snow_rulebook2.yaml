@@ -3,15 +3,14 @@
   sources:
     - name: my_snow
       servicenow.itsm.records:
-        host: "{{ snow_host }}"
-        username: "{{ snow_username }}"
-        password: "{{ snow_password }}"
-        table: sc_request
+        table: incident
         interval: 5
+        sysparm_query: "state=1^priority=1"
+        timestamp_field: "sys_updated_on"
       
   rules:
-    - name: Enrich new REQ received form service catalog
-      condition: event.sys_class_name == "sc_request"
+    - name: Enrich new INCIDENT received from service catalog
+      condition: event.sys_class_name == "incident" and event.state == "1" and event.priority == "1"s
       action:
         run_job_template:
           name: "Demo-Cleiton"
@@ -19,4 +18,4 @@
           post_events: true
           job_args:
             extra_vars:
-              req_number: "{{ event.nunmber }}"
+              req_number: "{{ event.number }}"
