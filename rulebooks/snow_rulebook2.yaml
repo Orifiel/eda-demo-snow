@@ -7,7 +7,7 @@
         interval: 10
         sysparm_query: "state=1^priority=4"
         timestamp_field: "sys_updated_on"
-      
+
   rules:
     - name: Trigger Job Template
       condition: event.payload.incident_number is defined

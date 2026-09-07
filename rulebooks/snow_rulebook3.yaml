@@ -2,7 +2,6 @@
 - name: ServiceNow to EDA Integration
   hosts: all
   sources:
-    #- ansible.eda.webhook:
     - eda.builtin.webhook:
         host: 0.0.0.0
         port: 5000
@@ -16,4 +15,3 @@
           job_args:
             extra_vars:
               incident_id: "{{ event.payload.incident_number }}"
-          
