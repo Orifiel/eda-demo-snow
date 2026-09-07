@@ -2,22 +2,22 @@
 - name: ServiceNow to EDA Integration
   hosts: all
   sources:
-    - ansible.eda.webhook:
+    - eda.builtin.webhook:
         host: 0.0.0.0
         port: 5000
   rules:
-    - name: DEBUG - Imprimir qualquer evento que chegar
-      condition: true
-      action:
-        debug:
-          msg: "Evento recebido: {{ event }}"
-
-    #- name: Trigger Job Template
-    #  condition: event.payload.incident_number is defined
+    #- name: DEBUG - Imprimir qualquer evento que chegar
+    #  condition: true
     #  action:
-    #    run_job_template:
-    #      name: "Demo-Cleiton-Template"
-    #      organization: "Default"
-    #      job_args:
-    #        extra_vars:
-    #          incident_id: "{{ event.payload.incident_number }}"
+    #    debug:
+    #      msg: "Evento recebido: {{ event }}"
+
+    - name: Trigger Job Template
+      condition: event.payload.incident_number is defined
+      action:
+        run_job_template:
+          name: "Demo-Cleiton-Template"
+          organization: "Default"
+          job_args:
+            extra_vars:
+              incident_id: "{{ event.payload.incident_number }}"
