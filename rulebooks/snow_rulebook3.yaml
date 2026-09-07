@@ -10,7 +10,6 @@
       condition: true
       action:
         debug:
-
     - name: Trigger Job Template
       condition: event.payload.incident_number is defined
       action:
