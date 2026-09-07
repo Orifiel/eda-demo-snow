@@ -12,12 +12,12 @@
         debug:
           msg: "Evento recebido: {{ event }}"
 
-    - name: Trigger Job Template
-      condition: event.payload.incident_number is defined
-      action:
-        run_job_template:
-          name: "Demo-Cleiton-Template"
-          organization: "Default"
-          job_args:
-            extra_vars:
-              incident_id: "{{ event.payload.incident_number }}"
+    #- name: Trigger Job Template
+    #  condition: event.payload.incident_number is defined
+    #  action:
+    #    run_job_template:
+    #      name: "Demo-Cleiton-Template"
+    #      organization: "Default"
+    #      job_args:
+    #        extra_vars:
+    #          incident_id: "{{ event.payload.incident_number }}"
