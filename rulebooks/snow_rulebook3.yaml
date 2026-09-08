@@ -6,11 +6,11 @@
         host: 0.0.0.0
         port: 5000
   rules:
-    - name: DEBUG - Imprimir qualquer evento que chegar
-      condition: true
-      action:
-        debug:
-          msg: "Evento recebido: {{ event }}"
+    #- name: DEBUG - Imprimir qualquer evento que chegar
+    #  condition: true
+    #  action:
+    #    debug:
+    #      msg: "Evento recebido: {{ event }}"
 
     - name: Trigger Job Template
       condition: event.payload.incident_number is defined
