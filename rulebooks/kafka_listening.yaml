@@ -5,7 +5,7 @@
     - ansible.eda.kafka:
       host: "kafka.example.com"
       port: "9093"
-      topic: "avro-events"
+      topic: "logging_topic-eda"
       group_id: "eda-sr-ssl"
       offset: "earliest"
       security_protocol: "SSL"
@@ -17,7 +17,7 @@
       schema_registry_ssl: true
       schema_ssl_cafile: "./certs/registry-ca.pem"
       schema_ssl_certfile: "./certs/registry-client.pem"
-      schema_ssl_keyfile: "./certs/registry-client-key.pem
+      schema_ssl_keyfile: "./certs/registry-client-key.pem"
   rules:
     - name: DEBUG - Print any event that arrives
       condition: true
