@@ -3,27 +3,22 @@
   hosts: all
   sources:
     - ansible.eda.kafka:
-      host: "kafka.example.com"
-      port: "9093"
-      topic: "logging_topic-eda"
-      group_id: "eda-sr-ssl"
-      offset: "earliest"
-      security_protocol: "SSL"
-      cafile: ".certs/kafka-ca.pem"
-      certfile: "./certs/kafka-client.pem"
-      keyfile: "./certs/kafka-client-key.pem"
-      message_format: "avro"
-      schema_registry_url: "https://kafkavm.cmattos.tamlab.rdu2.redhat.com:8081"
-      schema_registry_ssl: true
-      schema_ssl_cafile: "./certs/registry-ca.pem"
-      schema_ssl_certfile: "./certs/registry-client.pem"
-      schema_ssl_keyfile: "./certs/registry-client-key.pem"
+      host: "kafkavm.cmattos.tamlab.rdu2.redhat.com"
+      port: "9092"
+      topic: "logging_topic_eda"
+
   rules:
     - name: DEBUG - Print any event that arrives
-      condition: true
+      condition: event.payload is defined
       action:
         run_job_template:
           name: "Demo Job Template"
           organization: "Default"
-        ansible.builtin.debug:
-          msg: "Event received: {{ event }}"
+        
+    - name: show event messages
+      condition: event.body.message is defined
+      action:
+        debug:
+          msg: "{{ event.body.message }}"    
+
+    
