@@ -7,6 +7,7 @@
         port: "9092"
         topic: "TESTE"
         offset: earliest
+        group_id: "eda_teste_consumer_group"
 
   rules:
     - name: DEBUG - Print any event that arrives
