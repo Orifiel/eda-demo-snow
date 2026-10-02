@@ -6,6 +6,7 @@
         host: "kafkavm.cmattos.tamlab.rdu2.redhat.com"
         port: "9092"
         topic: "TESTE"
+        offset: earliest
 
   rules:
     - name: DEBUG - Print any event that arrives
