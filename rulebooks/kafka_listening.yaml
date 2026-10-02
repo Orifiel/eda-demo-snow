@@ -5,9 +5,7 @@
     - ansible.eda.kafka:
         host: "kafkavm.cmattos.tamlab.rdu2.redhat.com"
         port: "9092"
-        topic: "TESTE"
-        offset: earliest
-        group_id: "eda_teste_consumer_group"
+        topic: "TESTE"        
 
   rules:
     - name: DEBUG - Print any event that arrives
