@@ -3,9 +3,9 @@
   hosts: all
   sources:
     - ansible.eda.kafka:
-      host: "kafkavm.cmattos.tamlab.rdu2.redhat.com"
-      port: "9092"
-      topic: "logging"
+        host: "kafkavm.cmattos.tamlab.rdu2.redhat.com"
+        port: "9092"
+        topic: "logging"
 
   rules:
     - name: DEBUG - Print any event that arrives
