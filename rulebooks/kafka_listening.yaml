@@ -9,7 +9,7 @@
 
   rules:
     - name: DEBUG - Print any event that arrives
-      condition: event.body is defined and event.body is match("Automa.\*")
+      condition: event.body is defined and event.body is search("Automa.\*")
       action:
         run_job_template:
           name: "Demo Job Template"
