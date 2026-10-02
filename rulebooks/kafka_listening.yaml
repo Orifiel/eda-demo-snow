@@ -16,7 +16,7 @@
           organization: "Default"
         
     - name: show event messages
-      condition: event.body is defined
+      condition: event.body == Cleiton
       action:
         debug:
           msg: "{{ event.body }}"    
